@@ -45,8 +45,12 @@ if [[ "${DATASET_PREPARE_CACHE_ONLY:-0}" == true ]]; then
     exit 0
 fi
 
-echo "SFT-Trainer configuration:"
+echo "# SFT-Trainer configuration:"
 cat "$SFT_TRAINER_CONFIG_JSON_PATH"
+
+echo "# sha256sum of the $MODEL_NAME files"
+sha256sum "/mnt/storage/model/$MODEL_NAME"
+du -sh "/mnt/storage/model/$MODEL_NAME"
 
 if [[ -e /dev/nvidiactl ]]; then
     echo "# GPU available:"
